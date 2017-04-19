@@ -1,6 +1,8 @@
 # progetto_4f
 Collaborative project with 4f itis Rovigo
 
+# contributors
+cristiano: project manager
 
 ## Contributing
 
