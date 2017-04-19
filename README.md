@@ -4,6 +4,7 @@ Collaborative project with 4f itis Rovigo
 # contributors
 
 cristiano: project manager
+
 luca bacco: quick sort
 
 ## Contributing
