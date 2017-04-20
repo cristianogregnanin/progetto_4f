@@ -6,7 +6,13 @@ Collaborative project with 4f itis Rovigo
 cristiano: project manager
 
 luca bacco: quick sort
+
 alessandro leonardi: bitonic sort
+
+rodella nicola: insertion sort
+
+stocco emanuele: selection sort
+
 ## Contributing
 
 1. Fork it
