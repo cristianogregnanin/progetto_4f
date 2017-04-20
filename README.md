@@ -3,7 +3,8 @@ Collaborative project with 4f itis Rovigo
 
 # contributors
  cristiano: project manager
- rodella nicola: insertion sort
+ 
+ +rodella nicola: insertion sort
 
 ## Contributing
 
