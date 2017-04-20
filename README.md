@@ -13,6 +13,8 @@ rodella nicola: insertion sort
 
 stocco emanuele: selection sort
 
+Mantovani Marco: Shaker sort
+
 ## Contributing
 
 1. Fork it
