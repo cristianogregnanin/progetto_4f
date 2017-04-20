@@ -7,6 +7,8 @@ Collaborative project with 4f itis Rovigo
  rodella nicola: insertion sort
  
  luca bacco: quick sort
+ 
+ stocco emanuele: selection sort
 
 ## Contributing
 
