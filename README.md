@@ -1,8 +1,9 @@
 # progetto_4f
 Collaborative project with 4f itis Rovigo
 
-## Contributors
-Contributor: Rodella Nicola
+# contributors
+ cristiano: project manager
+ rodella nicola: insertion sort
 
 ## Contributing
 
