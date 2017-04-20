@@ -5,6 +5,7 @@ Collaborative project with 4f itis Rovigo
  cristiano: project manager
  
  rodella nicola: insertion sort
+ 
  luca bacco: quick sort
 
 ## Contributing
