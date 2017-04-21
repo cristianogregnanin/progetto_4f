@@ -15,6 +15,8 @@ stocco emanuele: selection sort
 
 Mantovani Marco: Shaker sort
 
+Voltani Andrea: Counting sort
+
 ## Contributing
 
 1. Fork it
