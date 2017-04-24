@@ -15,6 +15,8 @@ stocco emanuele: selection sort
 
 Mantovani Marco: Shaker sort
 
+nicola mischiatti: bubble sort
+
 Voltani Andrea: Counting sort
 
 ## Contributing
