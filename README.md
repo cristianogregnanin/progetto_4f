@@ -17,6 +17,8 @@ Mantovani Marco: Shaker sort
 
 nicola mischiatti: bubble sort
 
+Voltani Andrea: Counting sort
+
 ## Contributing
 
 1. Fork it
