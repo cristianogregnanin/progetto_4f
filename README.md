@@ -17,6 +17,8 @@ Mantovani Marco: Shaker sort
 
 nicola mischiatti: bubble sort
 
+pietro prendin: shell sort
+
 Voltani Andrea: Counting sort
 
 ## Contributing
