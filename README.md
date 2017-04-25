@@ -19,6 +19,8 @@ nicola mischiatti: bubble sort
 
 Voltani Andrea: Counting sort
 
+Alex Raule: Radix sort
+
 ## Contributing
 
 1. Fork it
