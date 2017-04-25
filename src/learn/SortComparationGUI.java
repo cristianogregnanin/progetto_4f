@@ -5,6 +5,8 @@
  */
 package learn;
 
+import javax.swing.JOptionPane;
+import java.util.Random;
 /**
  *
  * @author cristiano
@@ -16,6 +18,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
      */
     public SortComparationGUI() {
         initComponents();
+        JOptionPane.showMessageDialog(null, "Inserisci la dimensione dell'array e scegli tipo di sort");
     }
 
     /**
@@ -37,8 +40,13 @@ public class SortComparationGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnCalcola.setText("Calcola");
+        btnCalcola.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcolaActionPerformed(evt);
+            }
+        });
 
-        ComboSort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bubble sort", "Quick Sort", "Merge Sort", "Item 4" }));
+        ComboSort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Quick sort", "Bitonic sort", "Insertion sort", "Selection sort", "Shaker sort", "Bubble sort", "Counting sort", "Radix sort" }));
         ComboSort.setToolTipText("Choose sort method");
         ComboSort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,7 +89,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
                                 .addComponent(lblTime)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblValTime)))
-                        .addGap(0, 258, Short.MAX_VALUE)))
+                        .addGap(0, 243, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -112,6 +120,30 @@ public class SortComparationGUI extends javax.swing.JFrame {
     private void ComboSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboSortActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboSortActionPerformed
+
+    private void btnCalcolaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcolaActionPerformed
+       int indice;
+        try{
+             indice = Integer.parseInt(txtNumberOfElement.getText());
+            if(indice < 1)            
+                JOptionPane.showMessageDialog(null, "Dimensione vettore non possibile", "Errore", JOptionPane.WARNING_MESSAGE);  
+            else
+                v = new int[indice];
+        }
+        catch(Exception e){
+        } 
+        if(v.length > 0)
+        {
+            Random n = new Random();
+            for (int i = 0; i < v.length; i++) {
+                v[i] = n.nextInt();
+            }
+            //chiamare eventuale metodo sort
+            //alert attuale
+            JOptionPane.showMessageDialog(null, "Vettore ancora da Ordinare", "Wait!", JOptionPane.WARNING_MESSAGE);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCalcolaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,7 +179,8 @@ public class SortComparationGUI extends javax.swing.JFrame {
             }
         });
     }
-
+//variabili dichiarate da me
+    private int[] v;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComboSort;
     private javax.swing.JButton btnCalcola;

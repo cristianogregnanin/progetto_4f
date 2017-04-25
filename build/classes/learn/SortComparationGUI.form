@@ -44,7 +44,7 @@
                               <Component id="lblValTime" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="258" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="243" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -78,15 +78,22 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Calcola"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCalcolaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="ComboSort">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Bubble sort"/>
-            <StringItem index="1" value="Quick Sort"/>
-            <StringItem index="2" value="Merge Sort"/>
-            <StringItem index="3" value="Item 4"/>
+          <StringArray count="8">
+            <StringItem index="0" value="Quick sort"/>
+            <StringItem index="1" value="Bitonic sort"/>
+            <StringItem index="2" value="Insertion sort"/>
+            <StringItem index="3" value="Selection sort"/>
+            <StringItem index="4" value="Shaker sort"/>
+            <StringItem index="5" value="Bubble sort"/>
+            <StringItem index="6" value="Counting sort"/>
+            <StringItem index="7" value="Radix sort"/>
           </StringArray>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Choose sort method"/>
