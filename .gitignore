@@ -17,6 +17,7 @@ build/
 
 #netbeans specific
 core
+nbproject/
 nbproject/*
 !nbproject/project.properties
 !nbproject/project.xml
@@ -32,3 +33,14 @@ nbproject/*
 *.swp
 *.DS_Store
 *.lock
+
+
+
+# NetBeans specific #
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
