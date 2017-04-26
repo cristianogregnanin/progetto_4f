@@ -6,6 +6,7 @@
 package learn;
 
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -126,7 +127,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
                 Random r = new Random();
                 for (int i = 0; i < Integer.parseInt(jTextField1.getText()); i++)
                     vettore [i] = r.nextInt();
-                System.out.println("Ho popolato l'array");
+                JOptionPane.showMessageDialog(null, "Okay", "Risultato", JOptionPane.WARNING_MESSAGE);
                 
                         
                 
