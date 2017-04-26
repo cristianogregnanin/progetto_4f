@@ -33,7 +33,7 @@ nbproject/*
 *.DS_Store
 *.lock
 
-
+lib
 
 # NetBeans specific #
 nbproject/private/
