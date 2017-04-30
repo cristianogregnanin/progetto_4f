@@ -38,7 +38,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
         lblValTime = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
+        
         btnCalcola.setText("Calcola");
         btnCalcola.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,6 +144,18 @@ public class SortComparationGUI extends javax.swing.JFrame {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCalcolaActionPerformed
+
+    /*private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+                // TODO add your handling code here:
+                int vettore [] = new int [Integer.parseInt(jTextField1.getText())];
+                Random r = new Random();
+                for (int i = 0; i < Integer.parseInt(jTextField1.getText()); i++)
+                    vettore [i] = r.nextInt();
+                System.out.println("Ho popolato l'array");
+                
+                        
+                
+    }GEN-LAST:event_jButton1MouseClicked*/
 
     /**
      * @param args the command line arguments
