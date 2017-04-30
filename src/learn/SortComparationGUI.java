@@ -131,8 +131,9 @@ public class SortComparationGUI extends javax.swing.JFrame {
                 v = new int[indice];
         }
         catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Errore", JOptionPane.WARNING_MESSAGE);
         } 
-        if(v.length > 0)
+        if(v.length > 0)//se è andato tutto a buon fine
         {
             Random n = new Random();
             for (int i = 0; i < v.length; i++) {
