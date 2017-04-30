@@ -58,10 +58,10 @@ public class SortComparationGUI extends javax.swing.JFrame {
         txtElementi.setText("0");
         txtElementi.setToolTipText("Array dimension");
         txtElementi.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 txtElementiInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         txtElementi.addActionListener(new java.awt.event.ActionListener() {
@@ -93,15 +93,16 @@ public class SortComparationGUI extends javax.swing.JFrame {
                         .addComponent(doSort))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(sceltaSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtElementi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblTempo)))
+                                .addComponent(lblTempo))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(txtElementi)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel1))
+                                .addComponent(sceltaSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 242, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -153,10 +154,11 @@ int lista[];
             //case "": break;
         }
         long tmp = System.currentTimeMillis();;
-        long secondi = (tmp - startTime) / 1000;
-        JOptionPane.showMessageDialog(null, "Sort ordinato: \n"+StampaLista()
-                +"\nTempo impiegato: "+secondi
+        long secondi = (tmp - startTime);
+        JOptionPane.showMessageDialog(null, "Sort ordinato: \n"//+StampaLista()
+                +"\nTempo impiegato: "+secondi+"ms"
                 , "Concluso", JOptionPane.INFORMATION_MESSAGE);
+        lblTempo.setText(Double.toString(secondi/1000)+"s");
     }//GEN-LAST:event_doSortMouseClicked
 
     private String StampaLista(){
