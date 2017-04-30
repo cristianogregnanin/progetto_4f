@@ -42,8 +42,6 @@
                               <Component id="lblTime" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="lblValTime" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
                       <EmptySpace min="0" pref="243" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -76,7 +74,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="btnCalcola">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Calcola"/>
+        <Property name="text" type="java.lang.String" value="Ordina"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCalcolaActionPerformed"/>
@@ -110,6 +108,7 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="0"/>
         <Property name="toolTipText" type="java.lang.String" value="Array dimension"/>
+        <Property name="name" type="java.lang.String" value="" noResource="true"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNumberOfElementActionPerformed"/>
@@ -117,7 +116,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblElement">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Elements"/>
+        <Property name="text" type="java.lang.String" value="Number of elements"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTime">
@@ -129,6 +128,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="10s"/>
       </Properties>
-    </Component>
+    </Component>    
   </SubComponents>
 </Form>

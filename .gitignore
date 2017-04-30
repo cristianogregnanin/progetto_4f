@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 *.class
 
 # Mobile Tools for Java (J2ME)
@@ -33,6 +33,5 @@ nbproject/*
 *.swp
 *.DS_Store
 *.lock
-=======
 /dist/
->>>>>>> Primo
+

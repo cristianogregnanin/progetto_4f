@@ -4,9 +4,11 @@
  * and open the template in the editor.
  */
 package learn;
+import java.util.Random;
 import java.lang.*;
 import java.awt.Component;
 import javax.swing.*;
+
 import javax.swing.JOptionPane;
 import java.util.Random;
 /**
@@ -31,6 +33,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
         btnCalcola = new javax.swing.JButton();
         ComboSort = new javax.swing.JComboBox<>();
         txtNumberOfElement = new javax.swing.JTextField();
@@ -61,8 +64,6 @@ public class SortComparationGUI extends javax.swing.JFrame {
                 txtNumberOfElementActionPerformed(evt);
             }
         });
-
-        lblElement.setText("Elements");
 
         lblTime.setText("Time");
 
@@ -112,6 +113,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
     private void txtNumberOfElementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumberOfElementActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNumberOfElementActionPerformed
