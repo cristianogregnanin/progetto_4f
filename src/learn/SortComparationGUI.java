@@ -177,8 +177,9 @@ public class SortComparationGUI extends javax.swing.JFrame {
             
             //reflection
             nomeSort.getClass();
-        
-            jLabel3.setText("0,12");
+       
+            JOptionPane.showMessageDialog(null,"Code not implemented","alert",JOptionPane.ERROR_MESSAGE);     
+            jLabel3.setText("2,6");
         
         }
         catch (Exception e)
@@ -191,16 +192,32 @@ public class SortComparationGUI extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
                 // TODO add your handling code here:
-                int vettore [] = new int [Integer.parseInt(jTextField1.getText())];
+                array = new int [Integer.parseInt(jTextField1.getText())];
                 Random r = new Random();
                 for (int i = 0; i < Integer.parseInt(jTextField1.getText()); i++)
-                    vettore [i] = r.nextInt();
+                    array [i] = r.nextInt();
                 System.out.println("Ho popolato l'array");
                 
                         
                 
     }//GEN-LAST:event_jButton1MouseClicked
 
+   
+    public void bubbleSort(int[] array)
+    {
+      for(int i=0; i<array.length;i++)
+      {
+        for(int j=0; i<array.length-1;j++)
+        {
+            if(array[j]>array[j+1])
+            {
+                int x = array[j];
+                array[j] = array[j+1];
+                array[j+1] = x;
+            }
+        }
+      }
+    }
     /**
      * @param args the command line arguments
      */
@@ -235,7 +252,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
             }
         });
     }
-
+int[] array;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
