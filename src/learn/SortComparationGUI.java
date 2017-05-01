@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 package learn;
-import java.util.Random;
-import java.lang.*;
-import java.awt.Component;
+
 import javax.swing.*;
 
 import java.util.Random;
@@ -51,13 +49,18 @@ public class SortComparationGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Ordina");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bubble sort", "Quick Sort", "Merge Sort", "Bitonic Sort", "Insertion Sort", "Selection Sort", "Shaker Sort", "Counting Sort", "Redix Sort" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bubble sort", "Quick Sort", "Merge Sort", "Bitonic Sort", "Insertion Sort", "Selection Sort", "Shaker Sort", "Counting Sort", "Redix Sort", "Shell Sort", " " }));
         jComboBox1.setToolTipText("Choose sort method");
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,7 +159,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
-    
+    int[] messyArray;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
         try
@@ -164,7 +167,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
             int dim;
             DefaultListModel list = new DefaultListModel();
             dim = Integer.parseInt(jTextField1.getText());
-            int[] messyArray = new int[dim];
+            messyArray = new int[dim];
             Random random=new Random();
             int i;
             for(i=0; i<dim; i++)
@@ -195,12 +198,76 @@ public class SortComparationGUI extends javax.swing.JFrame {
                 Random r = new Random();
                 for (int i = 0; i < Integer.parseInt(jTextField1.getText()); i++)
                     vettore [i] = r.nextInt();
-                System.out.println("Ho popolato l'array");
-                
-                        
+                String ordinamento;
+                ordinamento=(String)jComboBox1.getSelectedItem();
+                double inizio,fine;
+                switch(ordinamento)
+                {
+                    case "Bitonic Sort": 
+                        inizio=System.currentTimeMillis();
+                        bitonicSort(0,messyArray.length,ASCENDING);
+                        fine=System.currentTimeMillis();
+                        jLabel3.setText(Double.toString((fine-inizio)));
+                        break;
+                }
+                DefaultListModel list = new DefaultListModel();
+                for(int i=0;i<vettore.length;i++)
+                {
+                    list.addElement("Element" +(i+1)+":"+" "+messyArray[i]);
+                }
+                 jList1.setModel(list);
                 
     }//GEN-LAST:event_jButton1MouseClicked
+   boolean ASCENDING=true,DESCENDING=false;
+    private void bitonicSort(int lo, int cnt, boolean dir)
+    {
+        if (cnt > 1)
+        {
+            int k = cnt / 2;
+            bitonicSort(lo, k, ASCENDING);
+            bitonicSort(lo + k, k, DESCENDING);
+            bitonicMerge(lo, cnt, dir);
+        }
+    }
 
+    /**
+     * The procedure bitonicMerge recursively sorts a bitonic sequence in
+     * ascending order, if dir = ASCENDING, and in descending order otherwise.
+     * The sequence to be sorted starts at index position lo, the number of
+     * elements is cnt.
+     *
+     */
+    private void bitonicMerge(int lo, int cnt, boolean dir)
+    {
+        if (cnt > 1)
+        {
+            int k = cnt / 2;
+            int i;
+            for (i = lo; i < lo + k; i++)
+            {
+                compare(i, i + k, dir);
+            }
+            bitonicMerge(lo, k, dir);
+            bitonicMerge(lo + k, k, dir);
+        }
+    }
+
+    /**
+     * A comparator is modelled by the procedure compare, where the parameter
+     * dir indicates the sorting direction. If dir is ASCENDING and a[i] > a[j]
+     * is true or dir is DESCENDING and a[i] > a[j] is false then a[i] and a[j]
+     * are interchanged.
+     *
+     */
+    private void compare(int i, int j, boolean dir)
+    {
+        if (dir == (messyArray[i] > messyArray[j]))
+        {
+            int h = messyArray[i];
+            messyArray[i] = messyArray[j];
+            messyArray[j] = h;
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -229,10 +296,8 @@ public class SortComparationGUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SortComparationGUI().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new SortComparationGUI().setVisible(true);
         });
     }
 
