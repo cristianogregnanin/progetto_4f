@@ -8,7 +8,7 @@ import java.util.Random;
 import java.lang.*;
 import java.awt.Component;
 import javax.swing.*;
-
+//import javax.swing.JOptionPane;
 import java.util.Random;
 
 /**
@@ -179,6 +179,9 @@ public class SortComparationGUI extends javax.swing.JFrame {
             nomeSort.getClass();
         
             jLabel3.setText("0,12");
+            
+            JOptionPane p = new JOptionPane();
+            p.showMessageDialog(null,"selezionato:"+jComboBox1.getSelectedItem().toString());
         
         }
         catch (Exception e)
@@ -196,11 +199,32 @@ public class SortComparationGUI extends javax.swing.JFrame {
                 for (int i = 0; i < Integer.parseInt(jTextField1.getText()); i++)
                     vettore [i] = r.nextInt();
                 System.out.println("Ho popolato l'array");
-                
-                        
-                
+                       
     }//GEN-LAST:event_jButton1MouseClicked
 
+    public void shakerSort(int[] array)
+    {
+    for (int i = 0; i < array.length/2; i++) {
+        boolean swapped = false;
+        for (int j = i; j < array.length - i - 1; j++) {
+            if (array[j] < array[j+1]) {
+                int tmp = array[j];
+                array[j] = array[j+1];
+                array[j+1] = tmp;
+                swapped = true;
+            }
+        }
+        for (int j = array.length - 2 - i; j > i; j--) {
+            if (array[j] > array[j-1]) {
+                int tmp = array[j];
+                array[j] = array[j-1];
+                array[j-1] = tmp;
+                swapped = true;
+            }
+        }
+        if(!swapped) break;
+    }
+}
     /**
      * @param args the command line arguments
      */
