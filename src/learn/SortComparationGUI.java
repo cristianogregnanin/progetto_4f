@@ -9,7 +9,7 @@ import java.lang.*;
 import java.awt.Component;
 import javax.swing.*;
 //import javax.swing.JOptionPane;
-import java.util.Random;
+//import java.util.Random;
 
 /**
  *
@@ -162,7 +162,8 @@ public class SortComparationGUI extends javax.swing.JFrame {
         try
         {
             int dim;
-            DefaultListModel list = new DefaultListModel();
+            DefaultListModel list = new DefaultListModel();//lista disordinata
+            DefaultListModel list2 = new DefaultListModel();//lista ordinata
             dim = Integer.parseInt(jTextField1.getText());
             int[] messyArray = new int[dim];
             Random random=new Random();
@@ -182,7 +183,22 @@ public class SortComparationGUI extends javax.swing.JFrame {
             
             JOptionPane p = new JOptionPane();
             p.showMessageDialog(null,"selezionato:"+jComboBox1.getSelectedItem().toString());
-        
+            
+            ShakerSort sk = new ShakerSort();
+            int[] vetOrd = new int[dim];
+            
+            switch(nomeSort)
+            {
+                case "Shaker Sort": vetOrd = sk.sort(messyArray);
+                                    for(int c = 0 ; c<dim;c++)
+                                        //System.out.println(vetOrd[c]);break;
+                                        list2.addElement("Element" +(c+1)+":"+" "+vetOrd[c]);           
+                                        jList1.setModel(list2);
+            }
+            
+            
+            
+            
         }
         catch (Exception e)
         {   
@@ -199,32 +215,9 @@ public class SortComparationGUI extends javax.swing.JFrame {
                 for (int i = 0; i < Integer.parseInt(jTextField1.getText()); i++)
                     vettore [i] = r.nextInt();
                 System.out.println("Ho popolato l'array");
-                       
+
     }//GEN-LAST:event_jButton1MouseClicked
 
-    public void shakerSort(int[] array)
-    {
-    for (int i = 0; i < array.length/2; i++) {
-        boolean swapped = false;
-        for (int j = i; j < array.length - i - 1; j++) {
-            if (array[j] < array[j+1]) {
-                int tmp = array[j];
-                array[j] = array[j+1];
-                array[j+1] = tmp;
-                swapped = true;
-            }
-        }
-        for (int j = array.length - 2 - i; j > i; j--) {
-            if (array[j] > array[j-1]) {
-                int tmp = array[j];
-                array[j] = array[j-1];
-                array[j-1] = tmp;
-                swapped = true;
-            }
-        }
-        if(!swapped) break;
-    }
-}
     /**
      * @param args the command line arguments
      */
@@ -277,3 +270,4 @@ public class SortComparationGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
+
