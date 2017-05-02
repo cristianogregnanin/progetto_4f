@@ -36,7 +36,6 @@ public class SortComparationGUI extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -74,8 +73,6 @@ public class SortComparationGUI extends javax.swing.JFrame {
         jTextField1.setToolTipText("Array dimension");
         jTextField1.setName(""); // NOI18N
 
-        jLabel1.setText("Number of elements");
-
         jLabel2.setText("Time");
 
         jLabel3.setText("10s");
@@ -102,15 +99,12 @@ public class SortComparationGUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(4, 4, 4)
-                                .addComponent(jLabel1))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, 130, Short.MAX_VALUE))
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel4)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
@@ -137,9 +131,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(51, 51, 51)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -188,6 +180,10 @@ public class SortComparationGUI extends javax.swing.JFrame {
             int[] vettOrdinato = new int[dim];
             
             DefaultListModel l = new DefaultListModel();
+            long inizio;
+            long fine;
+            long time;
+            inizio = System.currentTimeMillis();
             switch(nomeSort)
             {
                 case "Bubble Sort": break;
@@ -198,16 +194,24 @@ public class SortComparationGUI extends javax.swing.JFrame {
                 case "Selection Sort": break;
                 case "Shacker Sort": break;
                 case "Redix Sort": break;
-                case "Counting Sort": vettOrdinato = s.sort(messyArray);
+                case "Counting Sort": 
+                                      vettOrdinato = s.sort(messyArray);
+                                      
+                                      
+                                      
                                       for(int count = 0;count < dim; count++)
                                       {
                                           System.out.println(vettOrdinato[count]);
                                           l.addElement(vettOrdinato[count]);
                                       }
-                                      jList1.setModel(l);                                        
+                                      jList1.setModel(l);
+                                      
                                       break;
             }
-        
+            fine = System.currentTimeMillis();
+            time = (fine-inizio);
+            String tempo = String.valueOf(time);
+            jLabel3.setText(tempo+" ms");
         }
         catch (Exception e)
         {   
@@ -264,7 +268,6 @@ public class SortComparationGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
