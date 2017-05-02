@@ -32,3 +32,14 @@ nbproject/*
 *.swp
 *.DS_Store
 *.lock
+
+lib
+
+# NetBeans specific #
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+

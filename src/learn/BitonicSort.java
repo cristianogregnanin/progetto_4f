@@ -10,20 +10,15 @@ package learn;
  * @author aleleo
  */
 public class BitonicSort {
-    boolean ASCENDING=true,DESCENDING=false;
-    int vet[];
-    public BitonicSort(int []vet)
-    {
-        this.vet=vet;
-    }
-    private void bitonicSort(int lo, int cnt, boolean dir)
+    static boolean ASCENDING=true,DESCENDING=false;
+    private static void bitonicSort(int vet[],int lo, int cnt, boolean dir)
     {
         if (cnt > 1)
         {
             int k = cnt / 2;
-            bitonicSort(lo, k, ASCENDING);
-            bitonicSort(lo + k, k, DESCENDING);
-            bitonicMerge(lo, cnt, dir);
+            bitonicSort(vet,lo, k, ASCENDING);
+            bitonicSort(vet,lo + k, k, DESCENDING);
+            bitonicMerge(vet,lo, cnt, dir);
         }
     }
 
@@ -34,7 +29,7 @@ public class BitonicSort {
      * elements is cnt.
      *
      */
-    private void bitonicMerge(int lo, int cnt, boolean dir)
+    static private void bitonicMerge(int vet[], int lo, int cnt, boolean dir)
     {
         if (cnt > 1)
         {
@@ -42,10 +37,10 @@ public class BitonicSort {
             int i;
             for (i = lo; i < lo + k; i++)
             {
-                compare(i, i + k, dir);
+                compare(vet,i, i + k, dir);
             }
-            bitonicMerge(lo, k, dir);
-            bitonicMerge(lo + k, k, dir);
+            bitonicMerge(vet,lo, k, dir);
+            bitonicMerge(vet,lo + k, k, dir);
         }
     }
 
@@ -56,7 +51,7 @@ public class BitonicSort {
      * are interchanged.
      *
      */
-    private void compare(int i, int j, boolean dir)
+   static private void compare(int vet[],int i, int j, boolean dir)
     {
         if (dir == (vet[i] > vet[j]))
         {
