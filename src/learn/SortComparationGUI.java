@@ -15,6 +15,7 @@ import java.util.Random;
  *
  * @author cristiano
  */
+
 public class SortComparationGUI extends javax.swing.JFrame {
 
     /**
@@ -69,7 +70,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
         jTextField1.setToolTipText("Array dimension");
         jTextField1.setName(""); // NOI18N
 
-        jLabel1.setText("Number of elements");
+        jLabel1.setText("Elements");
 
         jLabel2.setText("Time");
 
@@ -96,20 +97,21 @@ public class SortComparationGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, 130, Short.MAX_VALUE))
+                                .addComponent(jLabel4))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(4, 4, 4)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, 130, Short.MAX_VALUE))
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel1)))
+                        .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -163,6 +165,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
         {
             int dim;
             DefaultListModel list = new DefaultListModel();
+            DefaultListModel ordinateList = new DefaultListModel();
             dim = Integer.parseInt(jTextField1.getText());
             int[] messyArray = new int[dim];
             Random random=new Random();
@@ -177,7 +180,10 @@ public class SortComparationGUI extends javax.swing.JFrame {
             
             //reflection
             nomeSort.getClass();
-        
+            MergeSort.mergeSort(messyArray);
+            for(i=0; i<dim; i++)
+                ordinateList.addElement("Element" +(i+1)+":"+" "+messyArray[i]); 
+            jList1.setModel(ordinateList);
             jLabel3.setText("0,12");
         
         }
