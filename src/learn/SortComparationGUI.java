@@ -176,9 +176,9 @@ public class SortComparationGUI extends javax.swing.JFrame {
             jList2.setModel(list);
             
             //reflection
-            nomeSort.getClass();
+            System.out.println(nomeSort.getClass());
         
-            jLabel3.setText("0,12");
+            jButton1MouseClicked();
         
         }
         catch (Exception e)
@@ -189,18 +189,46 @@ public class SortComparationGUI extends javax.swing.JFrame {
         }           
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-                // TODO add your handling code here:
-                int vettore [] = new int [Integer.parseInt(jTextField1.getText())];
-                Random r = new Random();
-                for (int i = 0; i < Integer.parseInt(jTextField1.getText()); i++)
-                    vettore [i] = r.nextInt();
-                System.out.println("Ho popolato l'array");
-                
-                        
-                
+    private void jButton1MouseClicked() {//GEN-FIRST:event_jButton1MouseClicked
+         this.lista = new int [Integer.parseInt(jTextField1.getText())];
+         Popola();
+         long startTime = System.currentTimeMillis();
+         switch((String)jComboBox1.getSelectedItem()){
+             case "Bubble sort": break;
+             case "Quick Sort": break;
+             case "Merge Sort": break;
+             case "Bitonic Sort": break;
+             case "Insertion Sort":  break;
+             case "Selection Sort": break;
+             case "Shaker Sort": break;
+             case "Counting Sort": break;
+             case "Redix Sort": break;
+             case "Shell Sort": break;
+             //case "": break;
+             //case "": break;
+         }
+         long tmp = System.currentTimeMillis();
+         long secondi = (tmp - startTime) / 1000;
+         JOptionPane.showMessageDialog(null, "Sort ordinato: \n"+StampaLista()
+                 +"\nTempo impiegato: "+secondi
+                 , "Concluso", JOptionPane.INFORMATION_MESSAGE);    
     }//GEN-LAST:event_jButton1MouseClicked
+int lista[];
 
+    private void Popola(){
+                 Random r = new Random();
+                 for (int i = 0; i < Integer.parseInt(jTextField1.getText()); i++)
+                    lista [i] = r.nextInt(99);      
+     }
+ 
+     private String StampaLista(){
+         String tmp="";
+         for (int i = 0; i < lista.length; i++) {
+             tmp+=lista[i];
+             tmp+="/";
+        }
+         return tmp;
+     }
     /**
      * @param args the command line arguments
      */
