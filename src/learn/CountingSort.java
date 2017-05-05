@@ -9,8 +9,8 @@ package learn;
  *
  * @author andrea
  */
-public class CountingSort {
-    public static int[] sort(int[] array) {   
+public class CountingSort implements ISort {
+    public static int[] Sort(int[] array) {   
     int[] aux = new int[array.length];
  
     int min = array[0];

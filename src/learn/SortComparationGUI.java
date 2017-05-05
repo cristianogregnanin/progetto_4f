@@ -8,6 +8,8 @@ import java.util.Random;
 import java.lang.*;
 import java.awt.Component;
 import javax.swing.*;
+import java.lang.reflect.Method;
+
 
 import java.util.Random;
 
@@ -61,7 +63,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bubble sort", "Quick Sort", "Merge Sort", "Bitonic Sort", "Insertion Sort", "Selection Sort", "Shaker Sort", "Counting Sort", "Redix Sort" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bubble Sort", "Quick Sort", "Merge Sort", "Bitonic Sort", "Insertion Sort", "Selection Sort", "Shaker Sort", "Counting Sort", "Redix Sort" }));
         jComboBox1.setToolTipText("Choose sort method");
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,10 +182,10 @@ public class SortComparationGUI extends javax.swing.JFrame {
             int[] vettOrdinato = new int[dim];
             
             DefaultListModel l = new DefaultListModel();
-            long inizio;
-            long fine;
+            long inizio = 0;
+            long fine = 0;
             long time;
-            inizio = System.currentTimeMillis();
+            
             switch(nomeSort)
             {
                 case "Bubble Sort": break;
@@ -194,11 +196,9 @@ public class SortComparationGUI extends javax.swing.JFrame {
                 case "Selection Sort": break;
                 case "Shacker Sort": break;
                 case "Redix Sort": break;
-                case "Counting Sort": 
-                                      vettOrdinato = s.sort(messyArray);
-                                      
-                                      
-                                      
+                case "Counting Sort": inizio = System.currentTimeMillis();
+                                      vettOrdinato = s.Sort(messyArray);
+                                      fine = System.currentTimeMillis();
                                       for(int count = 0;count < dim; count++)
                                       {
                                           System.out.println(vettOrdinato[count]);
@@ -208,7 +208,8 @@ public class SortComparationGUI extends javax.swing.JFrame {
                                       
                                       break;
             }
-            fine = System.currentTimeMillis();
+            
+          
             time = (fine-inizio);
             String tempo = String.valueOf(time);
             jLabel3.setText(tempo+" ms");
