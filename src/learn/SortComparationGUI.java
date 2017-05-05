@@ -162,9 +162,11 @@ public class SortComparationGUI extends javax.swing.JFrame {
         try
         {
             int dim;
-            DefaultListModel list = new DefaultListModel();
+            DefaultListModel listA = new DefaultListModel();
+            DefaultListModel listB = new DefaultListModel();
             dim = Integer.parseInt(jTextField1.getText());
             int[] messyArray = new int[dim];
+            int[] sortedArray = new int[dim];
             Random random=new Random();
             int i;
             for(i=0; i<dim; i++)
@@ -172,11 +174,20 @@ public class SortComparationGUI extends javax.swing.JFrame {
             String nomeSort = (String)jComboBox1.getSelectedItem();
             
             for(i=0; i<dim; i++)
-                list.addElement("Element" +(i+1)+":"+" "+messyArray[i]);           
-            jList2.setModel(list);
+                listA.addElement("Element" +(i+1)+":"+" "+messyArray[i]);           
+            jList2.setModel(listA);
+            
+            BubbleSort s = new BubbleSort();
+            switch(nomeSort)
+            {
+                case "Bubble sort": sortedArray = s.Sort(messyArray);
+                for(i=0; i<dim; i++)
+                listB.addElement("Element" +(i+1)+":"+" "+sortedArray[i]);           
+                jList1.setModel(listB);
+            }
             
             //reflection
-            nomeSort.getClass();
+           // nomeSort.getClass();
         
             jLabel3.setText("0,12");
         
