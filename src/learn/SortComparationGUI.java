@@ -179,7 +179,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
             //reflection
             nomeSort.getClass();
         
-            jLabel3.setText("0,12");
+            //jLabel3.setText("0,12");
             
             JOptionPane p = new JOptionPane();
             p.showMessageDialog(null,"selezionato:"+jComboBox1.getSelectedItem().toString());
@@ -187,18 +187,25 @@ public class SortComparationGUI extends javax.swing.JFrame {
             ShakerSort sk = new ShakerSort();
             int[] vetOrd = new int[dim];
             
+            long start =0;
+            long end = 0;
+            long time;
+            
             switch(nomeSort)
             {
-                case "Shaker Sort": vetOrd = sk.sort(messyArray);
+                case "Shaker Sort": start = System.currentTimeMillis();
+                                    vetOrd = sk.sort(messyArray);
+                                    end = System.currentTimeMillis();
                                     for(int c = 0 ; c<dim;c++)
                                         //System.out.println(vetOrd[c]);break;
                                         list2.addElement("Element" +(c+1)+":"+" "+vetOrd[c]);           
                                         jList1.setModel(list2);
             }
             
-            
-            
-            
+            time = (end-start);
+            String tempo = String.valueOf(time);
+            jLabel3.setText(tempo + "ms");
+                      
         }
         catch (Exception e)
         {   

@@ -8,9 +8,9 @@ package learn;
  *
  * @author mantovanimarco
  */
-public class ShakerSort {
+public class ShakerSort implements ISort{
     
-    public static int[] sort( int[] array ){
+    public static int[] sort( int[] array ){       
     boolean swapped;
     do {
       swapped = false;
