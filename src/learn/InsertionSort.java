@@ -9,8 +9,13 @@ package learn;
  *
  * @author Pudda
  */
-public class InsertionSort {
-    private void doInsertionSort(int lista[]) {
+public class InsertionSort{
+
+    /**
+     *
+     * @param lista
+     */
+    public static void Sort(int lista[]) {
          int temp;
          for (int i = 1; i < lista.length; i++) {
              for(int j = i ; j > 0 ; j--){
