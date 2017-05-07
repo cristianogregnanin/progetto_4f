@@ -175,17 +175,13 @@ public class SortComparationGUI extends javax.swing.JFrame {
          String classloader=(String)jComboBox1.getSelectedItem();
          Method m;
         try {
-            Class clazz = Class.forName(NomeClasse(classloader));
-            m=clazz.getMethod("Sort", int[].class);
+            Class clazz = Class.forName(NomeClasse(classloader));//richiedo la classe contenente il sort
+            m=clazz.getMethod("Sort", int[].class);//ottengo il metodo
             long startTime = System.currentTimeMillis();
-            m.invoke(clazz,lista);
+            m.invoke(clazz,lista);//invoco il metodo
             long tmp = System.currentTimeMillis();
-            long secondi = (tmp - startTime);
+            long secondi = (tmp - startTime);//calcolo tempo
             jLabel3.setText(Long.toString(secondi)+"ms");
-            
-//            JOptionPane.showMessageDialog(null, "Sort ordinato: \n"+StampaLista()
-//                 +"\nTempo impiegato: "+secondi
-//                 , "Concluso", JOptionPane.INFORMATION_MESSAGE);
             list=new DefaultListModel();
             for(int i=0; i<lista.length; i++)
                 list.addElement("Element" +(i+1)+":"+" "+lista[i]);
@@ -198,7 +194,6 @@ public class SortComparationGUI extends javax.swing.JFrame {
         }  
     }//GEN-LAST:event_jButton1MouseClicked
 int lista[];
-int listaord[];
 
     private String NomeClasse(String nome){
         String tmp=nome.substring(0,nome.indexOf(" "));
