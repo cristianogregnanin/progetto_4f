@@ -10,6 +10,6 @@ package learn;
  * @author mantovanimarco
  */
 public interface ISort {
-    static int[] Sort(int[] messyArray){return null;}
+    public static void Sort(int[] array){};
     
 }

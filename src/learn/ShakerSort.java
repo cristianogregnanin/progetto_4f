@@ -10,7 +10,7 @@ package learn;
  */
 public class ShakerSort implements ISort{
     
-    public static int[] sort( int[] array ){       
+    public static void Sort( int[] array ){       
     boolean swapped;
     do {
       swapped = false;
@@ -35,7 +35,6 @@ public class ShakerSort implements ISort{
         }
       }
     } while (swapped);
-    return array;//
   }
 }
 
