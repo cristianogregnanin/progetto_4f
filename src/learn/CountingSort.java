@@ -4,11 +4,6 @@
  * and open the template in the editor.
  */
 package learn;
-import java.util.Random;
-import java.lang.*;
-import java.awt.Component;
-import javax.swing.*;
-import java.lang.reflect.Method;
 /**
  *
  * @author andrea
