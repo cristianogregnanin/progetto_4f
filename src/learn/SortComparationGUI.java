@@ -8,7 +8,6 @@ import java.util.Random;
 import java.lang.*;
 import java.awt.Component;
 import javax.swing.*;
-import java.lang.annotation.Retention;
 import java.lang.reflect.Method;
 import java.util.Random;
 
@@ -174,6 +173,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
             for(i=0; i<dim; i++)
                 list.addElement("Element" +(i+1)+":"+" "+messyArray[i]);           
             jList2.setModel(list);
+            
             //Reflection
             //lettura nome sort
             //si vuole istanziare una classe a partire da una stringa            
@@ -185,6 +185,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
             inizio=System.currentTimeMillis()%1000;
             //MergeSort.sort(messyArray);
             m.invoke(classe, messyArray);
+            
             for(i=0; i<dim; i++)
                 ordinateList.addElement("Element" +(i+1)+":"+" "+messyArray[i]);
             //calcolo tempo
