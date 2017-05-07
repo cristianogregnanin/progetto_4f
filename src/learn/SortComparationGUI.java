@@ -8,6 +8,8 @@ import java.util.Random;
 import java.lang.*;
 import java.awt.Component;
 import javax.swing.*;
+import java.lang.reflect.Method;
+
 
 import java.util.Random;
 
@@ -57,7 +59,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bubble sort", "Quick Sort", "Merge Sort", "Bitonic Sort", "Insertion Sort", "Selection Sort", "Shaker Sort", "Counting Sort", "Redix Sort" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bubble Sort", "Quick Sort", "Merge Sort", "Bitonic Sort", "Insertion Sort", "Selection Sort", "Shaker Sort", "Counting Sort", "Redix Sort" }));
         jComboBox1.setToolTipText("Choose sort method");
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,7 +85,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
 
         jLabel5.setText("Choose the sort algoritm");
 
-        jLabel6.setText("Messy array");
+        jLabel6.setText("Initial array");
 
         jLabel7.setText("Sorted array");
 
@@ -97,9 +99,8 @@ public class SortComparationGUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel5)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, 130, Short.MAX_VALUE))
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox1, 0, 0, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
@@ -167,41 +168,65 @@ public class SortComparationGUI extends javax.swing.JFrame {
             DefaultListModel listA = new DefaultListModel();
             DefaultListModel listB = new DefaultListModel();
             dim = Integer.parseInt(jTextField1.getText());
-            int[] messyArray = new int[dim];
+            int[] initialArray = new int[dim];
             int[] sortedArray = new int[dim];
             Random random=new Random();
             int i;
             for(i=0; i<dim; i++)
-                messyArray[i]= random.nextInt(99)+1;        
+                initialArray[i]= random.nextInt(99)+1;        
             String nomeSort = (String)jComboBox1.getSelectedItem();
             
             for(i=0; i<dim; i++)
-                listA.addElement("Element" +(i+1)+":"+" "+messyArray[i]);           
+                listA.addElement("Element" +(i+1)+":"+" "+initialArray[i]);           
             jList2.setModel(listA);
             
-            BubbleSort s = new BubbleSort();
-            switch(nomeSort)
-            {
-                case "Bubble sort": sortedArray = s.Sort(messyArray);
-                for(i=0; i<dim; i++)
-                listB.addElement("Element" +(i+1)+":"+" "+sortedArray[i]);           
-                jList1.setModel(listB);
-            }
+          //  BubbleSort s = new BubbleSort();
+            
+//            switch(nomeSort)
+//            {
+//                case "Bubble sort": sortedArray = s.Sort(initialArray);
+//                for(i=0; i<dim; i++)
+//                listB.addElement("Element" +(i+1)+":"+" "+sortedArray[i]);           
+//                jList1.setModel(listB);
+//            }
             
             //reflection
            // nomeSort.getClass();
         
-            jLabel3.setText("0,12");
-        
+            long startTimer =0;
+            long endTimer=0;
+            long time;
+            
+            String ClassName = jComboBox1.getSelectedItem().toString();
+            Class<?> clazz = Class.forName("learn." + GetClassName(ClassName));
+            Method m = clazz.getMethod("Sort", int[].class);
+            startTimer = System.currentTimeMillis();//Inizialize timer  
+            m.invoke(clazz,initialArray);
+            endTimer = System.currentTimeMillis();
+            for(int j=0 ; j< initialArray.length;j++)
+            {
+                listB.addElement(initialArray[j]);
+            }
+            
+            jList1.setModel(listB);
+            time = (endTimer-startTimer);
+            String tempo = String.valueOf(time);
+            jLabel3.setText(tempo + "ms");
         }
         catch (Exception e)
         {   
             //finestra errore
-            JOptionPane.showMessageDialog(null, "Fill the fields as required","InfoBox:  "
-            + "Error",JOptionPane.INFORMATION_MESSAGE);          
+            JOptionPane.showMessageDialog(null, "Fill the files","Alert:  "
+            + "Error",JOptionPane.ERROR_MESSAGE);          
         }           
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private String GetClassName(String name)
+    {
+        String tmp;
+        tmp = name.replace(" ","");
+        return tmp;
+    }
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
                 // TODO add your handling code here:
                /* int vettore [] = new int [Integer.parseInt(jTextField1.getText())];
