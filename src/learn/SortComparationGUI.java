@@ -77,7 +77,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
 
         jLabel2.setText("Time");
 
-        jLabel3.setText("10s");
+        jLabel3.setText("0 ms");
 
         jScrollPane1.setViewportView(jList1);
 
@@ -158,8 +158,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        try
-        {
+        try{
             int dim;
             DefaultListModel list = new DefaultListModel();
             dim = Integer.parseInt(jTextField1.getText());
@@ -177,40 +176,25 @@ public class SortComparationGUI extends javax.swing.JFrame {
             //reflection
             nomeSort.getClass();
         
-            jLabel3.setText("0,12");
-            CountingSort s = new CountingSort();
-            int[] vettOrdinato = new int[dim];
-            
+            jLabel3.setText("0");
             DefaultListModel l = new DefaultListModel();
             long inizio = 0;
             long fine = 0;
             long time;
             
-            switch(nomeSort)
+            String nClasse = jComboBox1.getSelectedItem().toString();
+            Class<?> clazz = Class.forName("learn." + GetNomeClasse(nClasse));
+            Method m = clazz.getMethod("Sort", int[].class);
+            inizio = System.currentTimeMillis();
+            m.invoke(clazz, messyArray);
+            fine = System.currentTimeMillis();
+            for(int count = 0; count < messyArray.length; count++)
             {
-                case "Bubble Sort": break;
-                case "Quick Sort": break;
-                case "Merge Sort": break;
-                case "Bitonic Sort": break;
-                case "Insertion Sort": break;
-                case "Selection Sort": break;
-                case "Shacker Sort": break;
-                case "Redix Sort": break;
-                case "Counting Sort": inizio = System.currentTimeMillis();
-                                      vettOrdinato = s.Sort(messyArray);
-                                      fine = System.currentTimeMillis();
-                                      for(int count = 0;count < dim; count++)
-                                      {
-                                          System.out.println(vettOrdinato[count]);
-                                          l.addElement(vettOrdinato[count]);
-                                      }
-                                      jList1.setModel(l);
-                                      
-                                      break;
+               l.addElement(messyArray[count]);
             }
-            
+            jList1.setModel(l);           
           
-            time = (fine-inizio);
+            time = fine - inizio;
             String tempo = String.valueOf(time);
             jLabel3.setText(tempo+" ms");
         }
@@ -219,9 +203,16 @@ public class SortComparationGUI extends javax.swing.JFrame {
             //finestra errore
             JOptionPane.showMessageDialog(null, "Fill the fields as required","InfoBox:  "
             + "Error",JOptionPane.INFORMATION_MESSAGE);          
-        }           
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private String GetNomeClasse(String nomeClasse)
+    {
+         String tmp;
+         tmp=nomeClasse.replace(" ", "");
+        return tmp;
+    }
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
                 // TODO add your handling code here:
                 int vettore [] = new int [Integer.parseInt(jTextField1.getText())];

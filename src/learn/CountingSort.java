@@ -4,41 +4,38 @@
  * and open the template in the editor.
  */
 package learn;
-
+import java.util.Random;
+import java.lang.*;
+import java.awt.Component;
+import javax.swing.*;
+import java.lang.reflect.Method;
 /**
  *
  * @author andrea
  */
 public class CountingSort implements ISort {
-    public static int[] Sort(int[] array) {   
-    int[] aux = new int[array.length];
- 
-    int min = array[0];
-    int max = array[0];
-    for (int i = 1; i < array.length; i++) {
-      if (array[i] < min) {
-        min = array[i];
-      } else if (array[i] > max) {
-        max = array[i];
-      }
+    public static void Sort(int[] A) {   
+        int max=A[0];
+        int min=A[0];
+        int i=1;
+        for(; i<A.length; i++){
+            if(A[i]>max) max=A[i];
+            else if(A[i]<min) min=A[i];
+        }
+        //Costruzione dell'array C
+        int[] C=new int[max-min+1];           //crea l'array C
+        for(i=0; i<C.length; i++) C[i]=0;    //inizializza a zero gli elementi di C
+        for(i=0; i<A.length; i++)
+            C[A[i]-min]++;                    //aumenta il numero di volte che si è incontrato il valore
+        //Ordinamento in base al contenuto dell'array delle frequenze C
+        int k=0;                             //indice per l'array A
+        for(i=0; i<C.length; i++){
+            while(C[i]>0){                     //scrive C[i] volte il valore (i+min) nell'array A
+                A[k]=i+min;
+                k++;
+                C[i]--;
+            }
+        }
     }
- 
-    int[] counts = new int[max - min + 1];
- 
-    for (int i = 0;  i < array.length; i++) {
-      counts[array[i] - min]++;
-    }
- 
-    counts[0]--;
-    for (int i = 1; i < counts.length; i++) {
-      counts[i] = counts[i] + counts[i-1];
-    }
-
-    for (int i = array.length - 1; i >= 0; i--) {
-        aux[counts[array[i] - min]--] = array[i];
-    }
- 
-    return aux;
-  }
     
 }
