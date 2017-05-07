@@ -8,7 +8,8 @@ import java.util.Random;
 import java.lang.*;
 import java.awt.Component;
 import javax.swing.*;
-
+import java.lang.annotation.Retention;
+import java.lang.reflect.Method;
 import java.util.Random;
 
 /**
@@ -149,7 +150,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         try
         {
             int dim;
@@ -172,17 +173,18 @@ public class SortComparationGUI extends javax.swing.JFrame {
             //popolamento lista di elementi disordinati
             for(i=0; i<dim; i++)
                 list.addElement("Element" +(i+1)+":"+" "+messyArray[i]);           
-            jList2.setModel(list);         
+            jList2.setModel(list);
+            //Reflection
             //lettura nome sort
             //si vuole istanziare una classe a partire da una stringa            
             String nomeSort = (String)jComboBox1.getSelectedItem();
-            //Class<?> classe=Class.forName(nomeSort);
-            //elaborazione stringa
-            //classe.sort(messyArray);
-            
+            nomeSort=ElaboraStringa(nomeSort);
+            Class<?> classe=Class.forName("learn."+nomeSort);
+            Method m=classe.getMethod("sort", int[].class);
             //popolamento lista elementi ordinati
             inizio=System.currentTimeMillis()%1000;
-            MergeSort.sort(messyArray);
+            //MergeSort.sort(messyArray);
+            m.invoke(classe, messyArray);
             for(i=0; i<dim; i++)
                 ordinateList.addElement("Element" +(i+1)+":"+" "+messyArray[i]);
             //calcolo tempo
@@ -199,7 +201,12 @@ public class SortComparationGUI extends javax.swing.JFrame {
             + "Error",JOptionPane.INFORMATION_MESSAGE);          
         }           
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    private String ElaboraStringa(String s)
+        {
+            String tmp;//=s.toLowerCase();
+            tmp=s.replace(" ", "");
+            return tmp;
+        }
     /**
      * @param args the command line arguments
      */
@@ -233,6 +240,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
                 new SortComparationGUI().setVisible(true);
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
