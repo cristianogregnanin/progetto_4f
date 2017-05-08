@@ -11,15 +11,16 @@ package learn;
  */
 public class BitonicSort {
     static boolean ASCENDING=true,DESCENDING=false;
-    private static void bitonicSort(int vet[],int lo, int cnt, boolean dir)
+    public static int[] sort(int vet[],int lo, int cnt, boolean dir)
     {
         if (cnt > 1)
         {
             int k = cnt / 2;
-            bitonicSort(vet,lo, k, ASCENDING);
-            bitonicSort(vet,lo + k, k, DESCENDING);
+            sort(vet,lo, k, ASCENDING);
+            sort(vet,lo + k, k, DESCENDING);
             bitonicMerge(vet,lo, cnt, dir);
         }
+        return vet;
     }
 
     /**

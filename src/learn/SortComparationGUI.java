@@ -5,6 +5,7 @@
  */
 package learn;
 
+import java.lang.reflect.Method;
 import javax.swing.*;
 
 import java.util.Random;
@@ -177,58 +178,34 @@ public class SortComparationGUI extends javax.swing.JFrame {
             for(i=0; i<dim; i++)
                 list.addElement("Element" +(i+1)+":"+" "+messyArray[i]);           
             jList2.setModel(list);
-            
+            double inizio=0,fine=0;
             //reflection
-            nomeSort.getClass();
-        
-            jLabel3.setText("0,12");
+            nomeSort=ElaboraStringa(nomeSort);
+            Class<?> classe=Class.forName(nomeSort);
+            Method[] m=classe.getDeclaredMethods();
+            Method bit=m[2];
+            inizio=System.currentTimeMillis();
+            messyArray=(int[])bit.invoke(classe,messyArray,0,messyArray.length,true);
+            list = new DefaultListModel();
+            fine=System.currentTimeMillis();
+            fine=fine-inizio;
+            for(i=0; i<dim; i++)
+                list.addElement("Element" +(i+1)+":"+" "+messyArray[i]);           
+            jList1.setModel(list);
+            jLabel3.setText(Double.toString(fine));
         
         }
         catch (Exception e)
         {   
             //finestra errore
-            JOptionPane.showMessageDialog(null, "Fill the fields as required","InfoBox:  "
-            + "Error",JOptionPane.INFORMATION_MESSAGE);          
+            System.out.println(e.getMessage());
         }           
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-                // TODO add your handling code here:
-                int vettore [] = new int [Integer.parseInt(jTextField1.getText())];
-                Random r = new Random();
-                for (int i = 0; i < Integer.parseInt(jTextField1.getText()); i++)
-                    vettore [i] = r.nextInt();
-                String ordinamento;
-                ordinamento=(String)jComboBox1.getSelectedItem();
-                double inizio,fine;
-                switch(ordinamento)
-                {
-                    case "Bitonic Sort": 
-                        inizio=System.currentTimeMillis();
-                        bitonicSort(0,messyArray.length,ASCENDING);
-                        fine=System.currentTimeMillis();
-                        jLabel3.setText(Double.toString((fine-inizio)));
-                        break;
-                }
-                DefaultListModel list = new DefaultListModel();
-                for(int i=0;i<vettore.length;i++)
-                {
-                    list.addElement("Element" +(i+1)+":"+" "+messyArray[i]);
-                }
-                 jList1.setModel(list);
+
                 
     }//GEN-LAST:event_jButton1MouseClicked
-   boolean ASCENDING=true,DESCENDING=false;
-    private void bitonicSort(int lo, int cnt, boolean dir)
-    {
-        if (cnt > 1)
-        {
-            int k = cnt / 2;
-            bitonicSort(lo, k, ASCENDING);
-            bitonicSort(lo + k, k, DESCENDING);
-            bitonicMerge(lo, cnt, dir);
-        }
-    }
 
     /**
      * The procedure bitonicMerge recursively sorts a bitonic sequence in
@@ -237,21 +214,6 @@ public class SortComparationGUI extends javax.swing.JFrame {
      * elements is cnt.
      *
      */
-    private void bitonicMerge(int lo, int cnt, boolean dir)
-    {
-        if (cnt > 1)
-        {
-            int k = cnt / 2;
-            int i;
-            for (i = lo; i < lo + k; i++)
-            {
-                compare(i, i + k, dir);
-            }
-            bitonicMerge(lo, k, dir);
-            bitonicMerge(lo + k, k, dir);
-        }
-    }
-
     /**
      * A comparator is modelled by the procedure compare, where the parameter
      * dir indicates the sorting direction. If dir is ASCENDING and a[i] > a[j]
@@ -259,14 +221,12 @@ public class SortComparationGUI extends javax.swing.JFrame {
      * are interchanged.
      *
      */
-    private void compare(int i, int j, boolean dir)
-    {
-        if (dir == (messyArray[i] > messyArray[j]))
-        {
-            int h = messyArray[i];
-            messyArray[i] = messyArray[j];
-            messyArray[j] = h;
-        }
+
+    private String ElaboraStringa(String nome){
+        String tmp=nome.substring(0,nome.indexOf(" "));
+        tmp+=nome.substring(nome.indexOf(" ")+1, nome.length());
+        tmp="learn."+tmp;
+        return tmp;
     }
     /**
      * @param args the command line arguments
