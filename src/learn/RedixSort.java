@@ -9,13 +9,7 @@ package learn;
  *
  * @author alex99
  */
-class RadixSort {
-     int [] input;
-     
-     public RadixSort(int []input)
-     {
-         this.input = input;
-     }
+class RedixSort {
      public static int[] sort(int[] old) {
     // Loop for every bit in the integers
     for (int shift = Integer.SIZE - 1; shift > -1; shift--) {
