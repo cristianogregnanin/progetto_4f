@@ -9,8 +9,9 @@ package learn;
  *
  * @author alex99
  */
-class RedixSort {
-     public static int[] sort(int[] old) {
+class RedixSort implements Interfaccia
+{
+     public int[] sort(int[] old) {
     // Loop for every bit in the integers
     for (int shift = Integer.SIZE - 1; shift > -1; shift--) {
         int[] tmp = new int[old.length];
@@ -31,4 +32,8 @@ class RedixSort {
     }
     return old;
     }
+
+    
 }
+    
+

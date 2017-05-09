@@ -12,6 +12,8 @@ import java.lang.reflect.Method;
 import javax.swing.*;
 
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -183,11 +185,14 @@ public class SortComparationGUI extends javax.swing.JFrame {
             Class<?> classe = Class.forName("learn."+nomeDelSort);
             Method m = classe.getMethod("sort", int[].class);
             start = System.currentTimeMillis();
-            messyArray = (int[])m.invoke(classe, messyArray);
+            messyArray = (int[])m.invoke(classe.newInstance(), messyArray);
+            
             list = new DefaultListModel();
+           
             for(i=0; i<dim; i++)
-                list.addElement("Element" +(i+1)+":"+" "+messyArray[i]);           
-            jList1.setModel(list);
+                list.addElement("Element" +(i+1)+":"+" "+messyArray[i]);   
+             jList1.setModel(list);
+            
             end = System.currentTimeMillis();
             jLabel3.setText(Double.toString(end-start));
         
@@ -195,8 +200,9 @@ public class SortComparationGUI extends javax.swing.JFrame {
         catch (ClassNotFoundException | NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e)
         {   
             //finestra errore
-            JOptionPane.showMessageDialog(null, "Fill the fields as required","InfoBox:  "
-            + "Error",JOptionPane.INFORMATION_MESSAGE);          
+            System.out.println(e.getMessage());          
+        } catch (InstantiationException ex) {
+            Logger.getLogger(SortComparationGUI.class.getName()).log(Level.SEVERE, null, ex);
         }           
     }//GEN-LAST:event_jButton1ActionPerformed
 
