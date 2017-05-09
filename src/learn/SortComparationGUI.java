@@ -52,7 +52,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Ordina");
+        jButton1.setText("Order");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -173,7 +173,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
             Random random=new Random();
             int i;
             for(i=0; i<dim; i++)
-                initialArray[i]= random.nextInt(99)+1;        
+                initialArray[i]= random.nextInt(999)+1;        
             String nomeSort = (String)jComboBox1.getSelectedItem();
             
             for(i=0; i<dim; i++)
@@ -199,7 +199,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
             
             String ClassName = jComboBox1.getSelectedItem().toString();
             Class<?> clazz = Class.forName("learn." + GetClassName(ClassName));
-            Method m = clazz.getMethod("Sort", int[].class);
+            Method m = clazz.getMethod("Sort", int[].class);//cerca un metodo che si chiama Sort e accetta un vettore int
             startTimer = System.currentTimeMillis();//Inizialize timer  
             m.invoke(clazz,initialArray);
             endTimer = System.currentTimeMillis();
@@ -223,9 +223,9 @@ public class SortComparationGUI extends javax.swing.JFrame {
 
     private String GetClassName(String name)
     {
-        String tmp;
-        tmp = name.replace(" ","");
-        return tmp;
+        String n;
+        n = name.replace(" ","");
+        return n;
     }
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
                 // TODO add your handling code here:
