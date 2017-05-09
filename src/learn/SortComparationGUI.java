@@ -202,7 +202,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
             + "Error",JOptionPane.INFORMATION_MESSAGE);          
         }           
     }//GEN-LAST:event_jButton1ActionPerformed
-    private String ElaboraStringa(String s)
+    public String ElaboraStringa(String s)
         {
             String tmp;//=s.toLowerCase();
             tmp=s.replace(" ", "");
