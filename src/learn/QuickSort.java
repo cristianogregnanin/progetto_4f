@@ -9,11 +9,15 @@ package learn;
  *
  * @author luca
  */
-public class QuickSort {
-    static private int array[];
-    static private int length;
+public class QuickSort  implements ISort{
+    private int array[];
+    private int length;
  
-    static public void Sort(int[] inputArr) {
+    /**
+     *
+     * @param inputArr
+     */
+    public void Sort(int[] inputArr) {
          
         if (inputArr == null || inputArr.length == 0) {
             return;
@@ -23,7 +27,7 @@ public class QuickSort {
         MyQuickSort(0, length - 1);
     }
  
-    static private void MyQuickSort(int lowerIndex, int higherIndex) {
+    private void MyQuickSort(int lowerIndex, int higherIndex) {
          
         int i = lowerIndex;
         int j = higherIndex;
@@ -57,7 +61,7 @@ public class QuickSort {
             MyQuickSort(i, higherIndex);
     }
  
-    static private void exchangeNumbers(int i, int j) {
+    private void exchangeNumbers(int i, int j) {
         int temp = array[i];
         array[i] = array[j];
         array[j] = temp;
