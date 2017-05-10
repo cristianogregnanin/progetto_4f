@@ -4,9 +4,8 @@
  * and open the template in the editor.
  */
 package learn;
-import java.util.Random;
-import java.lang.*;
-import java.awt.Component;
+
+import java.lang.reflect.Method;
 import javax.swing.*;
 
 import java.util.Random;
@@ -51,13 +50,18 @@ public class SortComparationGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Ordina");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bubble sort", "Quick Sort", "Merge Sort", "Bitonic Sort", "Insertion Sort", "Selection Sort", "Shaker Sort", "Counting Sort", "Redix Sort" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bubble sort", "Quick Sort", "Merge Sort", "Bitonic Sort", "Insertion Sort", "Selection Sort", "Shaker Sort", "Counting Sort", "Redix Sort", "Shell Sort", " " }));
         jComboBox1.setToolTipText("Choose sort method");
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,7 +160,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
-    
+    int[] messyArray;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
         try
@@ -164,7 +168,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
             int dim;
             DefaultListModel list = new DefaultListModel();
             dim = Integer.parseInt(jTextField1.getText());
-            int[] messyArray = new int[dim];
+            messyArray = new int[dim];
             Random random=new Random();
             int i;
             for(i=0; i<dim; i++)
@@ -174,33 +178,56 @@ public class SortComparationGUI extends javax.swing.JFrame {
             for(i=0; i<dim; i++)
                 list.addElement("Element" +(i+1)+":"+" "+messyArray[i]);           
             jList2.setModel(list);
-            
+            double inizio=0,fine=0;
             //reflection
-            nomeSort.getClass();
-        
-            jLabel3.setText("0,12");
+            nomeSort=ElaboraStringa(nomeSort);
+            Class<?> classe=Class.forName(nomeSort);
+            Method[] m=classe.getDeclaredMethods();
+            Method bit=m[2];
+            inizio=System.currentTimeMillis();
+            messyArray=(int[])bit.invoke(classe,messyArray,0,messyArray.length,true);
+            list = new DefaultListModel();
+            fine=System.currentTimeMillis();
+            fine=fine-inizio;
+            for(i=0; i<dim; i++)
+                list.addElement("Element" +(i+1)+":"+" "+messyArray[i]);           
+            jList1.setModel(list);
+            jLabel3.setText(Double.toString(fine));
         
         }
         catch (Exception e)
         {   
             //finestra errore
-            JOptionPane.showMessageDialog(null, "Fill the fields as required","InfoBox:  "
-            + "Error",JOptionPane.INFORMATION_MESSAGE);          
+            System.out.println(e.getMessage());
         }           
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-                // TODO add your handling code here:
-                int vettore [] = new int [Integer.parseInt(jTextField1.getText())];
-                Random r = new Random();
-                for (int i = 0; i < Integer.parseInt(jTextField1.getText()); i++)
-                    vettore [i] = r.nextInt();
-                System.out.println("Ho popolato l'array");
-                
-                        
+
                 
     }//GEN-LAST:event_jButton1MouseClicked
 
+    /**
+     * The procedure bitonicMerge recursively sorts a bitonic sequence in
+     * ascending order, if dir = ASCENDING, and in descending order otherwise.
+     * The sequence to be sorted starts at index position lo, the number of
+     * elements is cnt.
+     *
+     */
+    /**
+     * A comparator is modelled by the procedure compare, where the parameter
+     * dir indicates the sorting direction. If dir is ASCENDING and a[i] > a[j]
+     * is true or dir is DESCENDING and a[i] > a[j] is false then a[i] and a[j]
+     * are interchanged.
+     *
+     */
+
+    public String ElaboraStringa(String nome){
+        String tmp=nome.substring(0,nome.indexOf(" "));
+        tmp+=nome.substring(nome.indexOf(" ")+1, nome.length());
+        tmp="learn."+tmp;
+        return tmp;
+    }
     /**
      * @param args the command line arguments
      */
@@ -229,10 +256,8 @@ public class SortComparationGUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SortComparationGUI().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new SortComparationGUI().setVisible(true);
         });
     }
 
