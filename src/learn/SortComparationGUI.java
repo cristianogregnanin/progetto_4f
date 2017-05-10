@@ -222,7 +222,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
      *
      */
 
-    private String ElaboraStringa(String nome){
+    public String ElaboraStringa(String nome){
         String tmp=nome.substring(0,nome.indexOf(" "));
         tmp+=nome.substring(nome.indexOf(" ")+1, nome.length());
         tmp="learn."+tmp;
