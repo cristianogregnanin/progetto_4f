@@ -15,6 +15,17 @@ stocco emanuele: selection sort
 
 Mantovani Marco: Shaker sort
 
+nicola mischiatti: bubble sort
+
+pietro prendin: shell sort
+
+Voltani Andrea: Counting sort
+
+Alex Raule: Radix sort
+
+paulon luca: merge sort
+
+
 ## Contributing
 
 1. Fork it
