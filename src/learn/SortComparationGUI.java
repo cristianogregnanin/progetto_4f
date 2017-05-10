@@ -9,7 +9,6 @@ import java.lang.*;
 import java.awt.Component;
 import java.lang.reflect.Method;
 import javax.swing.*;
-
 import java.util.Random;
 
 /**
@@ -212,7 +211,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
                 
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private String ElaboraStringa(String nome)
+    public String ElaboraStringa(String nome)
     {
         String tmp=nome.substring(0,nome.indexOf(" "));
         tmp+=nome.substring(nome.indexOf(" ")+1, nome.length());
