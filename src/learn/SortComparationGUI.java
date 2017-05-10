@@ -7,6 +7,7 @@ package learn;
 import java.util.Random;
 import java.lang.*;
 import java.awt.Component;
+import java.lang.reflect.Method;
 import javax.swing.*;
 
 import java.util.Random;
@@ -57,7 +58,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bubble sort", "Quick Sort", "Merge Sort", "Bitonic Sort", "Insertion Sort", "Selection Sort", "Shaker Sort", "Counting Sort", "Redix Sort" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bubble sort", "Quick Sort", "Merge Sort", "Bitonic Sort", "Insertion Sort", "Selection Sort", "Shaker Sort", "Shell Sort", "Counting Sort", "Redix Sort" }));
         jComboBox1.setToolTipText("Choose sort method");
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,11 +175,21 @@ public class SortComparationGUI extends javax.swing.JFrame {
             for(i=0; i<dim; i++)
                 list.addElement("Element" +(i+1)+":"+" "+messyArray[i]);           
             jList2.setModel(list);
-            
+            double inizio,fine;
             //reflection
-            nomeSort.getClass();
+            nomeSort=ElaboraStringa(nomeSort);
+            Class<?> classe=Class.forName(nomeSort);
+            Method m=classe.getMethod("sort",int[].class);
+            inizio=System.currentTimeMillis();
+            m.invoke(classe,messyArray);
+            list=new DefaultListModel();
+            fine= System.currentTimeMillis();
+            fine=fine-inizio;
+            for(i=0;i<dim;i++)
+                list.addElement("Element" +(i+1)+":"+" "+messyArray[i]);
+            jList1.setModel(list);
         
-            jLabel3.setText("0,12");
+            jLabel3.setText(Double.toString(fine));
         
         }
         catch (Exception e)
@@ -201,6 +212,13 @@ public class SortComparationGUI extends javax.swing.JFrame {
                 
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private String ElaboraStringa(String nome)
+    {
+        String tmp=nome.substring(0,nome.indexOf(" "));
+        tmp+=nome.substring(nome.indexOf(" ")+1, nome.length());
+        tmp="learn."+tmp;
+        return tmp;
+    }
     /**
      * @param args the command line arguments
      */
