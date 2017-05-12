@@ -8,6 +8,8 @@ import java.util.Random;
 import java.lang.*;
 import java.awt.Component;
 import javax.swing.*;
+import java.lang.reflect.Method;
+
 
 import java.util.Random;
 
@@ -50,14 +52,14 @@ public class SortComparationGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Ordina");
+        jButton1.setText("Order");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bubble sort", "Quick Sort", "Merge Sort", "Bitonic Sort", "Insertion Sort", "Selection Sort", "Shaker Sort", "Counting Sort", "Redix Sort" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bubble Sort", "Quick Sort", "Merge Sort", "Bitonic Sort", "Insertion Sort", "Selection Sort", "Shaker Sort", "Counting Sort", "Redix Sort" }));
         jComboBox1.setToolTipText("Choose sort method");
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,11 +71,11 @@ public class SortComparationGUI extends javax.swing.JFrame {
         jTextField1.setToolTipText("Array dimension");
         jTextField1.setName(""); // NOI18N
 
-        jLabel1.setText("Number of elements");
+        jLabel1.setText("Elements");
 
         jLabel2.setText("Time");
 
-        jLabel3.setText("10s");
+        jLabel3.setText("0 ms");
 
         jScrollPane1.setViewportView(jList1);
 
@@ -83,7 +85,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
 
         jLabel5.setText("Choose the sort algoritm");
 
-        jLabel6.setText("Messy array");
+        jLabel6.setText("Initial array");
 
         jLabel7.setText("Sorted array");
 
@@ -95,21 +97,23 @@ public class SortComparationGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel5)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox1, 0, 0, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(4, 4, 4)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, 130, Short.MAX_VALUE))
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)))
+                        .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(25, 25, 25)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -117,18 +121,18 @@ public class SortComparationGUI extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)))
+                        .addComponent(jLabel3)
+                        .addGap(6, 6, 6)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(jLabel7)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -162,40 +166,76 @@ public class SortComparationGUI extends javax.swing.JFrame {
         try
         {
             int dim;
-            DefaultListModel list = new DefaultListModel();
+            DefaultListModel listA = new DefaultListModel();
+            DefaultListModel listB = new DefaultListModel();           
             dim = Integer.parseInt(jTextField1.getText());
-            int[] messyArray = new int[dim];
+            if(dim<=0)
+            {
+                JOptionPane.showMessageDialog(null, "invalid array size","Alert:  "
+            + "Error",JOptionPane.ERROR_MESSAGE);             
+            }
+            int[] initialArray = new int[dim];
+            int[] sortedArray = new int[dim];
             Random random=new Random();
             int i;
             for(i=0; i<dim; i++)
-                messyArray[i]= random.nextInt(99)+1;        
+                initialArray[i]= random.nextInt(999)+1;        
             String nomeSort = (String)jComboBox1.getSelectedItem();
             
             for(i=0; i<dim; i++)
-                list.addElement("Element" +(i+1)+":"+" "+messyArray[i]);           
-            jList2.setModel(list);
+                listA.addElement("Element" +(i+1)+":"+" "+initialArray[i]);           
+            jList2.setModel(listA);       
+          //  BubbleSort s = new BubbleSort();
             
-            //reflection
-            nomeSort.getClass();
+//            switch(nomeSort)
+//            {
+//                case "Bubble sort": sortedArray = s.Sort(initialArray);
+//                for(i=0; i<dim; i++)
+//                listB.addElement("Element" +(i+1)+":"+" "+sortedArray[i]);           
+//                jList1.setModel(listB);
+//            }
         
-            jLabel3.setText("0,12");
-        
+            long startTimer =0;
+            long endTimer=0;
+            long time;
+            
+            String ClassName = jComboBox1.getSelectedItem().toString();
+            Class<?> clazz = Class.forName("learn." + GetClassName(ClassName));
+            Method m = clazz.getMethod("Sort", int[].class);//cerca un metodo che si chiama Sort e accetta un vettore int
+            startTimer = System.currentTimeMillis();//Inizialize timer  
+            m.invoke(clazz,initialArray);
+            endTimer = System.currentTimeMillis();
+            for(int j=0 ; j< initialArray.length;j++)
+            {
+                listB.addElement(initialArray[j]);
+            }
+            
+            jList1.setModel(listB);
+            time = (endTimer-startTimer);
+            String tempo = String.valueOf(time);
+            jLabel3.setText(tempo + "ms");
         }
         catch (Exception e)
-        {   
+        {  
             //finestra errore
-            JOptionPane.showMessageDialog(null, "Fill the fields as required","InfoBox:  "
-            + "Error",JOptionPane.INFORMATION_MESSAGE);          
+            JOptionPane.showMessageDialog(null, "Fill the files or code not implemeted","Alert:  "
+            + "Error",JOptionPane.ERROR_MESSAGE);          
         }           
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public String GetClassName(String name)
+    {
+        String n;
+        n = name.replace(" ","");
+        return n;
+    }
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
                 // TODO add your handling code here:
-                int vettore [] = new int [Integer.parseInt(jTextField1.getText())];
+               /* int vettore [] = new int [Integer.parseInt(jTextField1.getText())];
                 Random r = new Random();
                 for (int i = 0; i < Integer.parseInt(jTextField1.getText()); i++)
                     vettore [i] = r.nextInt();
-                System.out.println("Ho popolato l'array");
+                System.out.println("Ho popolato l'array");*/
                 
                         
                 
