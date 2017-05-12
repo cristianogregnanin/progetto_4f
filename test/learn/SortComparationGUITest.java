@@ -53,6 +53,22 @@ public class SortComparationGUITest {
      String provaStringa = test.GetClassName("Bubble Sort");
      assertEquals("BubbleSort", provaStringa);
     }
+    public void evaluatesSort() {
+     SortComparationGUI test = new SortComparationGUI();
+     int[] p = new int[5];
+     p[0] = 1;
+     p[1] = 2;
+     p[2] = 3;
+     p[3] = 4;
+     p[4] = 5;
+     int[] vTest = new int[5];
+     vTest[0] = 2;
+     vTest[1] = 1;
+     vTest[2] = 5;
+     vTest[3] = 4;
+     vTest[4] = 3;
+     assertEquals(p, vTest);
+    }
     //tools, create test
     //debug file
 }
