@@ -4,13 +4,11 @@
  * and open the template in the editor.
  */
 package learn;
-import java.util.Random;
-import java.lang.*;
-import java.awt.Component;
-import javax.swing.*;
 
+import javax.swing.JOptionPane;
 import java.util.Random;
-
+import java.lang.reflect.Method;
+import javax.swing.DefaultListModel;
 /**
  *
  * @author cristiano
@@ -22,6 +20,8 @@ public class SortComparationGUI extends javax.swing.JFrame {
      */
     public SortComparationGUI() {
         initComponents();
+        JOptionPane.showMessageDialog(null, "Inserisci la dimensione dell'array e scegli tipo di sort");
+        modello = new DefaultListModel();
     }
 
     /**
@@ -33,59 +33,77 @@ public class SortComparationGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        btnCalcola = new javax.swing.JButton();
+        ComboSort = new javax.swing.JComboBox<>();
+        txtNumberOfElement = new javax.swing.JTextField();
+        lblElement = new javax.swing.JLabel();
+        lblTime = new javax.swing.JLabel();
+        lblValTime = new javax.swing.JLabel();
+        btnReset = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ListElementiDisordinati = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        ListElementiOrdinati = new javax.swing.JList();
+        lblElemDis = new javax.swing.JLabel();
+        lblElemOrd = new javax.swing.JLabel();
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(jList1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(500, 300));
+        setSize(new java.awt.Dimension(500, 300));
 
-        jButton1.setText("Ordina");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCalcola.setText("Ordina");
+        btnCalcola.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCalcolaActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bubble sort", "Quick Sort", "Merge Sort", "Bitonic Sort", "Insertion Sort", "Selection Sort", "Shaker Sort", "Counting Sort", "Redix Sort" }));
-        jComboBox1.setToolTipText("Choose sort method");
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        ComboSort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BubbleSort", "QuickSort", "MergeSort", "BitonicSort", "InsertionSort", "SelectionSort", "ShakerSort", "CountingSort", "RedixSort" }));
+        ComboSort.setToolTipText("Choose sort method");
+        ComboSort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                ComboSortActionPerformed(evt);
             }
         });
 
-        jTextField1.setText("0");
-        jTextField1.setToolTipText("Array dimension");
-        jTextField1.setName(""); // NOI18N
+        txtNumberOfElement.setText("0");
+        txtNumberOfElement.setToolTipText("Array dimension");
+        txtNumberOfElement.setName(""); // NOI18N
+        txtNumberOfElement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumberOfElementActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setText("Number of elements");
+        lblElement.setText("Number of elements");
 
-        jLabel2.setText("Time");
+        lblTime.setText("Timer");
 
-        jLabel3.setText("10s");
+        lblValTime.setText("0 sec");
 
-        jScrollPane1.setViewportView(jList1);
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
 
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane1.setViewportView(ListElementiDisordinati);
 
-        jLabel4.setText("Insert array size");
+        jScrollPane2.setViewportView(ListElementiOrdinati);
 
-        jLabel5.setText("Choose the sort algoritm");
+        lblElemDis.setText("Elementi Disordinati");
 
-        jLabel6.setText("Messy array");
-
-        jLabel7.setText("Sorted array");
+        lblElemOrd.setText("Elementi Ordinati");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,112 +112,132 @@ public class SortComparationGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
+                            .addComponent(ComboSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(4, 4, 4)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, 130, Short.MAX_VALUE))
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)))
-                .addContainerGap())
+                                .addComponent(txtNumberOfElement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblElement))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblTime)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblValTime)))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(lblElemDis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnCalcola, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(lblElemOrd, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)))
+                    .addComponent(btnReset))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(jLabel7)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(51, 51, 51)
-                        .addComponent(jLabel5)
+                            .addComponent(txtNumberOfElement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblElement))
+                        .addGap(49, 49, 49)
+                        .addComponent(ComboSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTime)
+                            .addComponent(lblValTime)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblElemDis)
+                            .addComponent(lblElemOrd))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
-                        .addComponent(jButton1))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addComponent(jScrollPane2))))
+                .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(btnReset)
+                    .addComponent(btnCalcola))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void txtNumberOfElementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumberOfElementActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-    
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        try
-        {
-            int dim;
-            DefaultListModel list = new DefaultListModel();
-            dim = Integer.parseInt(jTextField1.getText());
-            int[] messyArray = new int[dim];
-            Random random=new Random();
-            int i;
-            for(i=0; i<dim; i++)
-                messyArray[i]= random.nextInt(99)+1;        
-            String nomeSort = (String)jComboBox1.getSelectedItem();
-            
-            for(i=0; i<dim; i++)
-                list.addElement("Element" +(i+1)+":"+" "+messyArray[i]);           
-            jList2.setModel(list);
-            
-            //reflection
-            nomeSort.getClass();
-        
-            jLabel3.setText("0,12");
-        
-        }
-        catch (Exception e)
-        {   
-            //finestra errore
-            JOptionPane.showMessageDialog(null, "Fill the fields as required","InfoBox:  "
-            + "Error",JOptionPane.INFORMATION_MESSAGE);          
-        }           
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_txtNumberOfElementActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-                // TODO add your handling code here:
-                int vettore [] = new int [Integer.parseInt(jTextField1.getText())];
-                Random r = new Random();
-                for (int i = 0; i < Integer.parseInt(jTextField1.getText()); i++)
-                    vettore [i] = r.nextInt();
-                System.out.println("Ho popolato l'array");
-                
-                        
-                
-    }//GEN-LAST:event_jButton1MouseClicked
+    private void ComboSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboSortActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboSortActionPerformed
+
+    private void btnCalcolaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcolaActionPerformed
+       int indice;
+        try{
+             indice = Integer.parseInt(txtNumberOfElement.getText());
+            if(indice < 1)            
+                JOptionPane.showMessageDialog(null, "Dimensione vettore non possibile", "Errore", JOptionPane.WARNING_MESSAGE);  
+            else
+                v = new int[indice];
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Errore", JOptionPane.WARNING_MESSAGE);
+        } 
+        if(v.length > 0)//se è andato tutto a buon fine
+        {            
+            Random n = new Random();
+            for (int i = 0; i < v.length; i++) {
+                v[i] = n.nextInt(100);
+                modello.addElement(v[i]);
+            }            
+            ListElementiDisordinati.setModel(modello);
+            modello = new DefaultListModel();//per poter inserire poi gli elementi ordinati
+            
+            double inizio = 0;
+            boolean errore = false;
+            String mexErrore = null;
+            
+            try{
+            //REFLECTION            
+            inizio = System.currentTimeMillis(); 
+            String nomeClasse = (ComboSort.getSelectedItem()).toString();
+            Class classe = Class.forName("learn." + nomeClasse);
+            Method metodo = classe.getMethod("Sort", int[].class);
+            metodo.invoke(classe.newInstance(), (Object)v);
+            }
+            catch(Exception e){
+                mexErrore = e.getMessage();
+                errore = true;
+            }
+            
+            double fine = System.currentTimeMillis();
+            timer = (fine -inizio)/1000;
+            if(!errore){//se è tutto corretto metto i dati nella list box altrimenti nulla
+            lblValTime.setText("= " + timer + " sec");
+            for (int i = 0; i < v.length; i++) {
+                   modello.addElement(v[i]);
+                }
+            ListElementiOrdinati.setModel(modello);
+            }
+            else
+                JOptionPane.showMessageDialog(null, mexErrore,"Errore",JOptionPane.ERROR_MESSAGE);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCalcolaActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        v = null;
+        lblValTime.setText("= 0 sec");
+        txtNumberOfElement.setText("0");
+        ComboSort.setSelectedItem("BubbleSort");
+        modello = new DefaultListModel();
+        ListElementiDisordinati.setModel(modello);
+        ListElementiOrdinati.setModel(modello);
+    }//GEN-LAST:event_btnResetActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,21 +273,25 @@ public class SortComparationGUI extends javax.swing.JFrame {
             }
         });
     }
-
+//variabili dichiarate da me
+    private int[] v;
+    private double timer;
+    DefaultListModel modello;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JComboBox<String> ComboSort;
+    private javax.swing.JList ListElementiDisordinati;
+    private javax.swing.JList ListElementiOrdinati;
+    private javax.swing.JButton btnCalcola;
+    private javax.swing.JButton btnReset;
     private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblElemDis;
+    private javax.swing.JLabel lblElemOrd;
+    private javax.swing.JLabel lblElement;
+    private javax.swing.JLabel lblTime;
+    private javax.swing.JLabel lblValTime;
+    private javax.swing.JTextField txtNumberOfElement;
     // End of variables declaration//GEN-END:variables
 }
