@@ -207,7 +207,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private String GetNomeClasse(String nomeClasse)
+    public String GetNomeClasse(String nomeClasse)
     {
          String tmp;
          tmp=nomeClasse.replace(" ", "");
