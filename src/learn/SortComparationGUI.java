@@ -8,8 +8,9 @@ import java.util.Random;
 import java.lang.*;
 import java.awt.Component;
 import javax.swing.*;
-
-import java.util.Random;
+import java.lang.reflect.Method;
+//import javax.swing.JOptionPane;
+//import java.util.Random;
 
 /**
  *
@@ -162,7 +163,8 @@ public class SortComparationGUI extends javax.swing.JFrame {
         try
         {
             int dim;
-            DefaultListModel list = new DefaultListModel();
+            DefaultListModel list = new DefaultListModel();//lista disordinata
+            DefaultListModel list2 = new DefaultListModel();//lista ordinata
             dim = Integer.parseInt(jTextField1.getText());
             int[] messyArray = new int[dim];
             Random random=new Random();
@@ -175,11 +177,37 @@ public class SortComparationGUI extends javax.swing.JFrame {
                 list.addElement("Element" +(i+1)+":"+" "+messyArray[i]);           
             jList2.setModel(list);
             
-            //reflection
+            //
             nomeSort.getClass();
         
-            jLabel3.setText("0,12");
-        
+            jLabel3.setText("0");
+            
+            JOptionPane p = new JOptionPane();
+            p.showMessageDialog(null,"selezionato:"+jComboBox1.getSelectedItem().toString());
+            
+            //ShakerSort sk = new ShakerSort();
+            //int[] vetOrd = new int[dim];
+            
+            long start =0;
+            long end = 0;
+            long time;
+            
+            String nClass = jComboBox1.getSelectedItem().toString();
+            Class<?> clazz = Class.forName("learn." + GetNomeClasse(nClass));
+            Method m = clazz.getMethod("Sort", int[].class);
+            start = System.currentTimeMillis();
+            m.invoke(clazz,messyArray);
+            end = System.currentTimeMillis();
+            for(int c = 0 ; c<messyArray.length;c++)
+            {
+                list2.addElement(messyArray[c]);
+            }
+            
+            jList1.setModel(list2);
+            time = (end-start);
+            String tempo = String.valueOf(time);
+            jLabel3.setText(tempo + "ms");
+                      
         }
         catch (Exception e)
         {   
@@ -188,7 +216,15 @@ public class SortComparationGUI extends javax.swing.JFrame {
             + "Error",JOptionPane.INFORMATION_MESSAGE);          
         }           
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
+    public String GetNomeClasse(String nClass)
+    {
+        String tmp;
+        tmp = nClass.replace(" ","");
+        return tmp;
+    }
+    
+    
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
                 // TODO add your handling code here:
                 int vettore [] = new int [Integer.parseInt(jTextField1.getText())];
@@ -196,9 +232,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
                 for (int i = 0; i < Integer.parseInt(jTextField1.getText()); i++)
                     vettore [i] = r.nextInt();
                 System.out.println("Ho popolato l'array");
-                
-                        
-                
+
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**
@@ -253,3 +287,4 @@ public class SortComparationGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
+
