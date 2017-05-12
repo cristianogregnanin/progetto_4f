@@ -195,7 +195,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 int lista[];
 
-    private String NomeClasse(String nome){
+    public String NomeClasse(String nome){
         String tmp=nome.substring(0,nome.indexOf(" "));
         tmp+=nome.substring(nome.indexOf(" ")+1, nome.length());
         tmp="learn."+tmp;
