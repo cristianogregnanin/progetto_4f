@@ -167,8 +167,13 @@ public class SortComparationGUI extends javax.swing.JFrame {
         {
             int dim;
             DefaultListModel listA = new DefaultListModel();
-            DefaultListModel listB = new DefaultListModel();
+            DefaultListModel listB = new DefaultListModel();           
             dim = Integer.parseInt(jTextField1.getText());
+            if(dim<=0)
+            {
+                JOptionPane.showMessageDialog(null, "invalid array size","Alert:  "
+            + "Error",JOptionPane.ERROR_MESSAGE);             
+            }
             int[] initialArray = new int[dim];
             int[] sortedArray = new int[dim];
             Random random=new Random();
@@ -211,9 +216,9 @@ public class SortComparationGUI extends javax.swing.JFrame {
             jLabel3.setText(tempo + "ms");
         }
         catch (Exception e)
-        {   
+        {  
             //finestra errore
-            JOptionPane.showMessageDialog(null, "Fill the files","Alert:  "
+            JOptionPane.showMessageDialog(null, "Fill the files or code not implemeted","Alert:  "
             + "Error",JOptionPane.ERROR_MESSAGE);          
         }           
     }//GEN-LAST:event_jButton1ActionPerformed
