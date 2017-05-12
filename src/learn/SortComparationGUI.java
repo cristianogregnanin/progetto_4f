@@ -75,7 +75,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
 
         jLabel2.setText("Time");
 
-        jLabel3.setText("10s");
+        jLabel3.setText("0 ms");
 
         jScrollPane1.setViewportView(jList1);
 
@@ -121,7 +121,8 @@ public class SortComparationGUI extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)))
+                        .addComponent(jLabel3)
+                        .addGap(6, 6, 6)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -178,8 +179,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
             
             for(i=0; i<dim; i++)
                 listA.addElement("Element" +(i+1)+":"+" "+initialArray[i]);           
-            jList2.setModel(listA);
-            
+            jList2.setModel(listA);       
           //  BubbleSort s = new BubbleSort();
             
 //            switch(nomeSort)
@@ -189,9 +189,6 @@ public class SortComparationGUI extends javax.swing.JFrame {
 //                listB.addElement("Element" +(i+1)+":"+" "+sortedArray[i]);           
 //                jList1.setModel(listB);
 //            }
-            
-            //reflection
-           // nomeSort.getClass();
         
             long startTimer =0;
             long endTimer=0;
@@ -221,7 +218,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
         }           
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private String GetClassName(String name)
+    public String GetClassName(String name)
     {
         String n;
         n = name.replace(" ","");
