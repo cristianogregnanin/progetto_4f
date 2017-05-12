@@ -7,9 +7,15 @@ package learn;
 import java.util.Random;
 import java.lang.*;
 import java.awt.Component;
+import java.awt.event.MouseEvent;
 import javax.swing.*;
+import java.lang.Class;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -51,9 +57,9 @@ public class SortComparationGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Ordina");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
             }
         });
 
@@ -69,7 +75,7 @@ public class SortComparationGUI extends javax.swing.JFrame {
         jTextField1.setToolTipText("Array dimension");
         jTextField1.setName(""); // NOI18N
 
-        jLabel1.setText("Number of elements");
+        jLabel1.setText("Elements");
 
         jLabel2.setText("Time");
 
@@ -96,20 +102,21 @@ public class SortComparationGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(4, 4, 4)
-                                .addComponent(jLabel1))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, 130, Short.MAX_VALUE))
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel4)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jTextField1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel1))
+                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -157,50 +164,58 @@ public class SortComparationGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1MouseClicked(MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        DefaultListModel list=new DefaultListModel();
         
-        try
-        {
-            int dim;
-            DefaultListModel list = new DefaultListModel();
-            dim = Integer.parseInt(jTextField1.getText());
-            int[] messyArray = new int[dim];
-            Random random=new Random();
-            int i;
-            for(i=0; i<dim; i++)
-                messyArray[i]= random.nextInt(99)+1;        
-            String nomeSort = (String)jComboBox1.getSelectedItem();
-            
-            for(i=0; i<dim; i++)
-                list.addElement("Element" +(i+1)+":"+" "+messyArray[i]);           
-            jList2.setModel(list);
-            
-            //reflection
-            nomeSort.getClass();
-        
-            jLabel3.setText("0,12");
-        
-        }
-        catch (Exception e)
-        {   
-            //finestra errore
-            JOptionPane.showMessageDialog(null, "Fill the fields as required","InfoBox:  "
-            + "Error",JOptionPane.INFORMATION_MESSAGE);          
-        }           
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-                // TODO add your handling code here:
-                int vettore [] = new int [Integer.parseInt(jTextField1.getText())];
-                Random r = new Random();
-                for (int i = 0; i < Integer.parseInt(jTextField1.getText()); i++)
-                    vettore [i] = r.nextInt();
-                System.out.println("Ho popolato l'array");
-                
-                        
-                
+        this.lista = new int [Integer.parseInt(jTextField1.getText())];
+         Popola();
+         for(int i=0; i<lista.length; i++)
+            list.addElement("Element" +(i+1)+":"+" "+lista[i]);
+         jList2.setModel(list);
+         String classloader=(String)jComboBox1.getSelectedItem();
+         Method m;
+        try {
+            Class clazz = Class.forName(NomeClasse(classloader));//richiedo la classe contenente il sort
+            m=clazz.getMethod("Sort", int[].class);//ottengo il metodo
+            long startTime = System.currentTimeMillis();
+            m.invoke(clazz,lista);//invoco il metodo
+            long tmp = System.currentTimeMillis();
+            long secondi = (tmp - startTime);//calcolo tempo
+            jLabel3.setText(Long.toString(secondi)+"ms");
+            list=new DefaultListModel();
+            for(int i=0; i<lista.length; i++)
+                list.addElement("Element" +(i+1)+":"+" "+lista[i]);
+            jList1.setModel(list);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SortComparationGUI.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Classe non trovata");
+        } catch (IllegalArgumentException | NoSuchMethodException | SecurityException | IllegalAccessException | InvocationTargetException ex) {
+            Logger.getLogger(SortComparationGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }  
     }//GEN-LAST:event_jButton1MouseClicked
+int lista[];
 
+    public String NomeClasse(String nome){
+        String tmp=nome.substring(0,nome.indexOf(" "));
+        tmp+=nome.substring(nome.indexOf(" ")+1, nome.length());
+        tmp="learn."+tmp;
+        return tmp;
+    }
+    
+    private void Popola(){
+                 Random r = new Random();
+                 for (int i = 0; i < Integer.parseInt(jTextField1.getText()); i++)
+                    lista [i] = r.nextInt(99);      
+     }
+ 
+     private String StampaLista(){
+         String tmp="";
+         for (int i = 0; i < lista.length; i++) {
+             tmp+=lista[i];
+             tmp+="/";
+        }
+         return tmp;
+     }
     /**
      * @param args the command line arguments
      */
