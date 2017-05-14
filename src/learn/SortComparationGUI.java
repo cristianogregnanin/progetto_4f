@@ -193,7 +193,7 @@ public class SortComparationGUI extends javax.swing.JFrame
     //metodo di controllo
     public String ElaboraStringa(String s)
         {
-            String st; //=s.toLowerCase();
+            String st;
             st = s.replace(" ", "");
             return st;
         }
