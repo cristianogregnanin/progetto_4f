@@ -9,7 +9,7 @@ package learn;
  *
  * @author lucapaulon
  */
-public class MergeSort {
+public class MergeSort implements ISort {
     public static void sort(int [ ] a)
 	{
 		int[] tmp = new int[a.length];
