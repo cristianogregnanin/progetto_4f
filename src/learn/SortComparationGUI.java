@@ -4,23 +4,23 @@
  * and open the template in the editor.
  */
 package learn;
-import java.util.Random;
 import java.lang.*;
 import java.awt.Component;
 import javax.swing.*;
-
+import java.lang.reflect.Method;
 import java.util.Random;
 
 /**
  *
- * @author cristiano
+ * @author Stocco Emanuele
  */
-public class SortComparationGUI extends javax.swing.JFrame {
-
+public class SortComparationGUI extends javax.swing.JFrame 
+{
     /**
      * Creates new form SortComparationGUI
      */
-    public SortComparationGUI() {
+    public SortComparationGUI() 
+    {
         initComponents();
     }
 
@@ -39,14 +39,11 @@ public class SortComparationGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,150 +54,150 @@ public class SortComparationGUI extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bubble sort", "Quick Sort", "Merge Sort", "Bitonic Sort", "Insertion Sort", "Selection Sort", "Shaker Sort", "Counting Sort", "Redix Sort" }));
-        jComboBox1.setToolTipText("Choose sort method");
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selection Sort", "Quick Sort", "Bitonic Sort", "Insertion Sort", "Shaker Sort", "Bubble Sort", "Shell Sort", "Counting Sort", "Radix Sort", "Merge Sort" }));
+        jComboBox1.setToolTipText("Scegli l'algoritmo di ordinamento");
 
-        jTextField1.setText("0");
         jTextField1.setToolTipText("Array dimension");
         jTextField1.setName(""); // NOI18N
 
-        jLabel1.setText("Number of elements");
+        jLabel1.setText("Dimensione vettore:");
 
-        jLabel2.setText("Time");
+        jLabel2.setText("Tempo impiegato:");
 
-        jLabel3.setText("10s");
+        jLabel3.setText("0 ms");
 
-        jScrollPane1.setViewportView(jList1);
+        jLabel5.setText("Algoritmo di ordinamento:");
 
-        jScrollPane2.setViewportView(jList2);
+        jLabel6.setText("Vettore generato:");
 
-        jLabel4.setText("Insert array size");
+        jLabel7.setText("Vettore ordinato:");
 
-        jLabel5.setText("Choose the sort algoritm");
+        jTextField2.setToolTipText("Array dimension");
+        jTextField2.setName(""); // NOI18N
 
-        jLabel6.setText("Messy array");
-
-        jLabel7.setText("Sorted array");
+        jTextField3.setToolTipText("Array dimension");
+        jTextField3.setName(""); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(4, 4, 4)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, 130, Short.MAX_VALUE))
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)))
-                .addContainerGap())
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField2)
+                    .addComponent(jTextField3)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(jLabel7)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(51, 51, 51)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
-                        .addComponent(jButton1))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addContainerGap())
+                    .addComponent(jLabel1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel3))
+                    .addComponent(jButton1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jComboBox1.getAccessibleContext().setAccessibleDescription("Scegli l'algoritmo di ordinamento");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
         try
         {
-            int dim;
-            DefaultListModel list = new DefaultListModel();
-            dim = Integer.parseInt(jTextField1.getText());
-            int[] messyArray = new int[dim];
-            Random random=new Random();
-            int i;
-            for(i=0; i<dim; i++)
-                messyArray[i]= random.nextInt(99)+1;        
+            int dimensione = Integer.parseInt(jTextField1.getText()); //prende la dimensione del vettore dalla textbox
+            
+            if(dimensione <= 0) //controllo dimensione inserita
+            {
+                JOptionPane.showMessageDialog(null, "Inserimento dimensione errata!", "Alert:" + "Error", JOptionPane.ERROR_MESSAGE);             
+            }
+            
+            //dichiarazione variabili
+            int vettore [] = new int [dimensione];
+            Random casuale = new Random();
+            String stringa = "";
+            
+            //generazione elementi casuali per il vettore
+            for(int i = 0; i < dimensione; i++)
+            {
+                vettore[i] = casuale.nextInt(99)+1; //elementi generati da 1 a 100
+            }
+            
+            for(int i = 0; i < dimensione; i++) //stampa vettore iniziale sulla textbox
+            {
+                stringa += String.valueOf(vettore[i]) + " ";
+            }
+            jTextField2.setText(stringa);
+            
+            //Reflection
+            //cerca la classe con l'algoritmo selezionato
+            long inizio = System.currentTimeMillis() % 1000; //inizio conteggio tempo          
             String nomeSort = (String)jComboBox1.getSelectedItem();
+            nomeSort = ElaboraStringa(nomeSort);
+            Class<?> classe = Class.forName("learn." + nomeSort);
+            Method m = classe.getMethod("Sort", int[].class);
+            m.invoke(classe, vettore);
             
-            for(i=0; i<dim; i++)
-                list.addElement("Element" +(i+1)+":"+" "+messyArray[i]);           
-            jList2.setModel(list);
+            //stampa vettore ordinato sulla textbox
+            stringa = "";
+            for(int i = 0; i < dimensione; i++)
+            {
+                stringa += String.valueOf(vettore[i]) + " ";
+            }
+            jTextField3.setText(stringa);
             
-            //reflection
-            nomeSort.getClass();
-        
-            jLabel3.setText("0,12");
-        
+            long fine = (System.currentTimeMillis() % 1000) - inizio; //fine e stampa del tempo impiegato
+            jLabel3.setText(String.valueOf(fine)+ " ms");
         }
         catch (Exception e)
         {   
+            String messaggio = e.getMessage();
             //finestra errore
-            JOptionPane.showMessageDialog(null, "Fill the fields as required","InfoBox:  "
-            + "Error",JOptionPane.INFORMATION_MESSAGE);          
-        }           
+            JOptionPane.showMessageDialog(null, "Richieste errate!.\n" + messaggio,"InfoBox:" + "Error", JOptionPane.ERROR_MESSAGE);          
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-                // TODO add your handling code here:
-                int vettore [] = new int [Integer.parseInt(jTextField1.getText())];
-                Random r = new Random();
-                for (int i = 0; i < Integer.parseInt(jTextField1.getText()); i++)
-                    vettore [i] = r.nextInt();
-                System.out.println("Ho popolato l'array");
-                
-                        
-                
-    }//GEN-LAST:event_jButton1MouseClicked
-
+    //metodo di controllo
+    public String ElaboraStringa(String s)
+        {
+            String st; //=s.toLowerCase();
+            st = s.replace(" ", "");
+            return st;
+        }
+    
     /**
      * @param args the command line arguments
      */
@@ -242,14 +239,11 @@ public class SortComparationGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }
