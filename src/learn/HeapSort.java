@@ -17,7 +17,7 @@ public class HeapSort implements ISort
     buildheap(a);
     for(int i=n;i>0;i--)
     {
-      exchange(0, i);
+              exchange(0, i);
       n=n-1;
       maxheap(a, 0);
     }       

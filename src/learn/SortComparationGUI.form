@@ -112,7 +112,7 @@
     <Component class="javax.swing.JComboBox" name="jComboBox1">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="9">
+          <StringArray count="10">
             <StringItem index="0" value="Bubble sort"/>
             <StringItem index="1" value="Quick Sort"/>
             <StringItem index="2" value="Merge Sort"/>
@@ -122,6 +122,7 @@
             <StringItem index="6" value="Shaker Sort"/>
             <StringItem index="7" value="Counting Sort"/>
             <StringItem index="8" value="Redix Sort"/>
+            <StringItem index="9" value="Heap Sort"/>
           </StringArray>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Choose sort method"/>
