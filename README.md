@@ -1,3 +1,4 @@
+
 # progetto_4f
 Collaborative project with 4f itis Rovigo
 
@@ -25,6 +26,7 @@ Alex Raule: Radix sort
 
 paulon luca: merge sort
 
+zhu xinyi: heap sort
 
 ## Contributing
 
